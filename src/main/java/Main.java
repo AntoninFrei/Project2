@@ -31,63 +31,63 @@ import org.json.JSONObject;
     public class Main {
         public static void main(String[] args) {
             String json = ClientBuilder.newClient().target("https://euvatrates.com/rates.json").request().accept(MediaType.APPLICATION_JSON).get(String.class);
-            System.out.println("cccccc");
+            //System.out.println("cccccc");
             System.out.println(json);
 
             JSONObject obj = new JSONObject(json);
 
             JSONObject readedData = obj.getJSONObject("rates");
             Iterator<String> keys = readedData.keys();
-            //JSONArray readedJ = readedData.getJSONArray("rates");
+
             while(keys.hasNext()) {
                 String key = keys.next();
                 System.out.println(key);
+                System.out.println(readedData.getJSONObject(key).getString("country"));
+                System.out.println(readedData.getJSONObject(key).getBigDecimal("standard_rate"));
+                //System.out.println(readedData.getJSONObject(key).getBigDecimal("reduced_rate"));
+
+                try {
+                    System.out.println(readedData.getJSONObject(key).getBigDecimal("reduced_rate"));
+                }
+                catch (org.json.JSONException e) {
+                    System.out.println(readedData.getJSONObject(key).getBoolean("reduced_rate"));
+                    System.out.println("Je to Boolean");
+                }
+
+                try {
+                    System.out.println(readedData.getJSONObject(key).getBigDecimal("reduced_rate_alt"));
+                }
+                catch (org.json.JSONException e) {
+                    System.out.println(readedData.getJSONObject(key).getBoolean("reduced_rate_alt"));
+                    System.out.println("Je to Boolean");
+                }
+
+                try {
+                    System.out.println(readedData.getJSONObject(key).getBigDecimal("super_reduced_rate"));
+                }
+                catch (org.json.JSONException e) {
+                    System.out.println(readedData.getJSONObject(key).getBoolean("super_reduced_rate"));
+                    System.out.println("Je to Boolean");
+                }
+
+
+                try {
+                    System.out.println(readedData.getJSONObject(key).getBigDecimal("parking_rate"));
+                }
+                catch (org.json.JSONException e) {
+                    System.out.println(readedData.getJSONObject(key).getBoolean("parking_rate"));
+                    System.out.println("Je to Boolean");
+                }
             }
-            System.out.println("xxxxxxxxxxxxxxxxxxxx");
-            System.out.println(readedData);
-//            JSONObject obj2 = new JSONObject(readedData);
-//            JSONObject data2 = obj2.getJSONObject("CZ");
-//            System.out.println(data2);
-//            System.out.println("xxxxxxooooooooooooooooooooooooooooooxxxxxxxxxxxxx");
-            final int n = readedData.length();
-//            for (int i = 0; i < n; ++i) {
-//                System.out.println("xxx");
-//                System.out.println(readedData.get("AT"));
-                //System.out.println(readedData.getJSONObject(String.valueOf(i)));
-                //JSONObject person = readedData.getJSONObject(i);
-                //System.out.println(person.getInt("county"));
-//
-//            }
-//            for(JSONObject read: readedJ) {
-//                System.out.println("xxx");
-//            }
-            System.out.println("xxxxxxxxxxxxxxxxxxxxx");
-            System.out.println(readedData.getJSONObject("AT").getString("country"));
+
+
+
+
 
         }
 
 
-        //System.out.println("myNumber:\t" + readMO.getMyNumber());
 
-//            ObjectMapper objectMapper = new ObjectMapper();
-//
-//
-//
-//
-////
-////
-////        // načtení ze souboru
-//    	try {
-//            MyObject readMO = objectMapper.readValue(json, MyObject.class);
-//            System.out.println("MyObject načten.");
-////            // rozbrazení načtených hodnot
-////            //System.out.println("myNumber:\t" + readMO.getMyNumber());
-////            //System.out.println("myBoolean:\t" + readMO.isMyBoolean());
-////            //System.out.println("myString:\t" + readMO.getMyString());
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     }
 
