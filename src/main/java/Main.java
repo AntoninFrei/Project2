@@ -43,6 +43,7 @@ import org.json.JSONObject;
                 String key = keys.next();
                 System.out.println(key);
                 System.out.println(readedData.getJSONObject(key).getString("country"));
+                String country = readedData.getJSONObject(key).getString("country");
                 System.out.println(readedData.getJSONObject(key).getBigDecimal("standard_rate"));
                 //System.out.println(readedData.getJSONObject(key).getBigDecimal("reduced_rate"));
 
@@ -55,10 +56,10 @@ import org.json.JSONObject;
                 }
 
                 try {
-                    System.out.println(readedData.getJSONObject(key).getBigDecimal("reduced_rate_alt"));
+                    System.out.println("reduced_rate_alt" + readedData.getJSONObject(key).getBigDecimal("reduced_rate_alt"));
                 }
                 catch (org.json.JSONException e) {
-                    System.out.println(readedData.getJSONObject(key).getBoolean("reduced_rate_alt"));
+                    System.out.println("reduced_rate_alt" + readedData.getJSONObject(key).getBoolean("reduced_rate_alt"));
                     System.out.println("Je to Boolean");
                 }
 
@@ -78,7 +79,10 @@ import org.json.JSONObject;
                     System.out.println(readedData.getJSONObject(key).getBoolean("parking_rate"));
                     System.out.println("Je to Boolean");
                 }
+
+                System.out.println("Pomoci funkce " + getIsHas(readedData, "super_reduced_rate"));
             }
+
 
 
 
@@ -88,8 +92,20 @@ import org.json.JSONObject;
 
 
 
+        static Boolean getIsHas(JSONObject readedData, String key) {
+            Boolean out;
+            try {
+                out = readedData.getJSONObject(key).getBoolean(key);
+            }
+            catch (org.json.JSONException e) {
+                out = true;
+
+            }
+            return out;
+        }
 
     }
+
 
 
 
