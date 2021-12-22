@@ -152,7 +152,13 @@ public class Main {
                     System.out.println(listOfState.getMax());
                 }
                 else if (inputString.equals("3")) {
-                    exportToFile(listOfState.getMin() + listOfState.getMax());
+                    try {
+                        exportToFile(listOfState.getMin() + listOfState.getMax());
+                    } catch (StateException e) {
+
+                        e.printStackTrace();
+                    }
+
                     System.out.println("doplnit");
                 }
                 else if (inputString.equals("4")) {
@@ -162,6 +168,9 @@ public class Main {
                 }
                 else if (inputString.equals("5")) {
                     nextInput = false;
+                }
+                else {
+                    System.out.println("Zadaná neplatná volba - \"" + inputString + "\"! Vyber hodnotu z nabídky:");
                 }
             }
 

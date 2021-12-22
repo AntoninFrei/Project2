@@ -1,4 +1,6 @@
 /.idea/
 /out/
 
-/target/classes/Main.class
+*.class
+*.txt
+
