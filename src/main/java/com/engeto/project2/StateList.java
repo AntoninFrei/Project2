@@ -63,6 +63,13 @@ public class StateList {
         return null;
     }
 
+    public String getWithShort(String shortCut) {
+        for (State item : States) {
+            if (item.isShortCutThisCoutry(shortCut)) return item.getDescrtion();
+        }
+        return "Nenalezena země se zkratkou " + shortCut + " !\n";
+    }
+
     public boolean isDuplicate(State state) {
         for (State item : States) {
             if (state.getName().equals(item.getName())) return true;

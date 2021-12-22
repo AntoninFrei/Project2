@@ -53,4 +53,12 @@ public class State {
         public void addShorCut(String shortCut) {
                 this.shortcut.add(shortCut);
         }
+
+        public boolean isShortCutThisCoutry(String shortCut) {
+                for (String shortC : this.shortcut) {
+                        if (shortC.equals(shortCut.toUpperCase())) return true;
+
+                }
+                return false;
+        }
 }
