@@ -15,10 +15,10 @@ import static com.engeto.project2.ReadInput.safeInput;
 
 
 public class Main {
-    public static void main(String[] args) throws StateException {
+    public static void main(String[] args)  {
         String json = ClientBuilder.newClient().target("https://euvatrates.com/rates.json").request().accept(MediaType.APPLICATION_JSON).get(String.class);
 
-        System.out.println(json);
+        //System.out.println(json);
 
         JSONObject obj = new JSONObject(json);
 
@@ -53,7 +53,6 @@ public class Main {
             State findState = listOfState.getItemWithName(state);
             if (findState != null) {
                 findState.addShorCut(state.getFirstShortCut());
-                //listOfState.setAltShortCut(state);
                 System.out.println("Duplicita " + state.getName());
             } else {
                 listOfState.add(state);
@@ -63,8 +62,9 @@ public class Main {
         }
         boolean nextInput = true;
         while (nextInput) {
-            System.out.println("Vyber volbu:\n\t1 - Vytisky 3 země s nejnižší sazbou\n\t2 - Vytiskni 3 zeme " +
-                    "z nejvyssi zakladní sazbou\n\t3 - soubor\n\t4 - zadej\n\t5 - konec");
+            System.out.println("Vyber volbu:\n\t1 - Vytiskni 3 země s nejnižší základní sazbou\n\t2 - Vytiskni 3 země " +
+                    "s nejvyšši základní sazbou\n\t3 - Ulož to souboru 3 země s nejnižší základní sazbou a 3 země " +
+                    "s nejvyšší základní sazbou\n\t4 - Vypiš zemi podle zadaná zkratky\n\t5 - Konec");
             String inputString = safeInput();
             if (inputString.equals("1")) {
                 System.out.println(listOfState.getMin());
@@ -100,18 +100,6 @@ public class Main {
         } catch (FileNotFoundException e) {
             throw new StateException("Chyba při zápisu do souboru: " + fileName + "!");
         }
-    }
-
-
-    static Boolean getIsHas(JSONObject readedData, String key) {
-        Boolean out;
-        try {
-            out = readedData.getJSONObject(key).getBoolean(key);
-        } catch (org.json.JSONException e) {
-            out = true;
-
-        }
-        return out;
     }
 
 }

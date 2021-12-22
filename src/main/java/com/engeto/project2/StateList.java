@@ -25,12 +25,12 @@ public class StateList {
 
     public String getMin() {
         List<State> StatesSorted = getSorted();
-        return "Státy z nejnižší základní sazbou:\n" + toString(0, 3, StatesSorted);
+        return "Státy s nejnižší základní sazbou:\n" + toString(0, 3, StatesSorted);
     }
 
     public String getMax() {
         List<State> StatesSorted = getSorted();
-        return "Státy z nejvyšší základní sazbou:\n" + toString(StatesSorted.toArray().length - 3,
+        return "Státy s nejvyšší základní sazbou:\n" + toString(StatesSorted.toArray().length - 3,
                 StatesSorted.toArray().length, StatesSorted);
     }
 
@@ -57,12 +57,6 @@ public class StateList {
         return "Nenalezena země se zkratkou " + shortCut + " !\n";
     }
 
-    public boolean isDuplicate(State state) {
-        for (State item : States) {
-            if (state.getName().equals(item.getName())) return true;
-        }
-        return false;
-    }
 
     public List<State> getSorted() {
         List<State> StatesSorted = (new ArrayList<State>(States));
