@@ -92,11 +92,16 @@ public class Main {
 
 //                System.out.println("Pomoci funkce " + getIsHas(readedData, "super_reduced_rate"));
 
-                TaxRate standardRate = new TaxRate(readedData, countryShort, "standard_rate");
-                TaxRate reducedRate = new TaxRate(readedData, countryShort, "reduced_rate");
-                TaxRate reducedRateAlt = new TaxRate(readedData, countryShort, "reduced_rate_alt");
-                TaxRate superReducedRate = new TaxRate(readedData, countryShort, "super_reduced_rate");
-                TaxRate parkingRate = new TaxRate(readedData, countryShort, "parking_rate");
+                TaxRate standardRate = new TaxRate(readedData, countryShort, "standard_rate",
+                        "Základní sazba");
+                TaxRate reducedRate = new TaxRate(readedData, countryShort, "reduced_rate",
+                        "1. snížená sazba");
+                TaxRate reducedRateAlt = new TaxRate(readedData, countryShort, "reduced_rate_alt",
+                        "2. snížená sazba");
+                TaxRate superReducedRate = new TaxRate(readedData, countryShort, "super_reduced_rate",
+                        "Super snížená sazba");
+                TaxRate parkingRate = new TaxRate(readedData, countryShort, "parking_rate",
+                        "Speciální sazba");
 
                 //System.out.println("reduced rate alt: " + reducedRateAlt.getRate());
 
@@ -153,7 +158,7 @@ public class Main {
                 }
                 else if (inputString.equals("3")) {
                     try {
-                        exportToFile(listOfState.getMin() + listOfState.getMax());
+                        System.out.println(exportToFile(listOfState.getMin() + "\n\n" + listOfState.getMax()));
                     } catch (StateException e) {
 
                         e.printStackTrace();
@@ -195,10 +200,11 @@ public class Main {
 
         }
 
-    public static void exportToFile(String out) throws StateException {
+    public static String exportToFile(String out) throws StateException {
         String fileName = "outPut.txt";
         try (PrintWriter writer = new PrintWriter(new File(fileName))) {
             writer.println(out);
+            return "Byl vytvořen soubor " + fileName;
         } catch (FileNotFoundException e) {
             throw  new StateException("Chyba při zápisu do souboru: " + fileName +"!");
         }

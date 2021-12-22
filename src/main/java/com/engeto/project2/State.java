@@ -26,15 +26,23 @@ public class State {
         }
 
         public String getDescrtion() {
-                String out = "Země:\t" + this.name;
-                out += "\nZákladní sazba:\t" + standardRate.getDescription();
-                out += "\n1. snížená sazba:\t" + reducedRate.getDescription();
-                out += "\n2. snížená sazba:\t" + reducedRateAlt.getDescription();
-                out += "\nSpeciální snížená sazba:\t" + superReducedRate.getDescription();
-                out += "\nxxx:\t" + parkingRate.getDescription();
-                out += "\n------------------------------------\n";
+                String out = "Země:\t\t\t\t\t\t" + this.name + "\n" + getShortNames();
+                out += "\n\t" + standardRate.getDescription();
+                out += "\n\t" + reducedRate.getDescription();
+                out += "\n\t" + reducedRateAlt.getDescription();
+                out += "\n\t" + superReducedRate.getDescription();
+                out += "\n\t" + parkingRate.getDescription();
+                out += "\n----------------------------------------------\n";
 
 
+                return out;
+        }
+
+        public String getShortNames() {
+                String out = "Zkratka:\t\t\t\t\t" + this.getFirstShortCut() + "\n";
+                for(int i = 1; i < this.shortcut.toArray().length; i++) {
+                        out += "Alternativní zkratka:\t\t" + this.shortcut.get(i) + "\n";
+                }
                 return out;
         }
 

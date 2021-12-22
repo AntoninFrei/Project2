@@ -17,7 +17,7 @@ public class StateList {
         String out = "";
 
         for(int i = start; i<end; i++) {
-            out += "Pořadí: " + (i+1) + "\n";
+            out += "Pořadí:\t\t\t\t\t\t" + (i+1) + "\n";
             out += StatesSorted.get(i).getDescrtion();
         }
         return out;
@@ -47,14 +47,13 @@ public class StateList {
         return "Výpis všech státu:\n" + out;
     }
 
-    public void setAltShortCut(State state) {
-        for (State item : States) {
-            if (state.getName().equals(item.getName())) item.addShorCut(state.getFirstShortCut());
-
-        }
-
-
-    }
+//    public void setAltShortCut(State state) {
+//        for (State item : States) {
+//            if (state.getName().equals(item.getName())) item.addShorCut(state.getFirstShortCut());
+//        }
+//
+//
+//    }
 
     public State getItemWithName(State state) {
         for (State item : States) {
