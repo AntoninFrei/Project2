@@ -164,7 +164,6 @@ public class Main {
                         e.printStackTrace();
                     }
 
-                    System.out.println("doplnit");
                 }
                 else if (inputString.equals("4")) {
                     System.out.println(listOfState.getAllNames());

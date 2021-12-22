@@ -50,6 +50,11 @@ public class State {
                 return standardRate;
         }
 
+        public String getNameLong(){
+                String out = this.name;
+                return out;
+        }
+
         public String getName() {
                 return name;
         }

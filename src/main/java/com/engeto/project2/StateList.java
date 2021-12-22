@@ -40,11 +40,11 @@ public class StateList {
 
     public String getAllNames() {
         String out = "";
-        for (State item : States) out += item.name + "\t" + item.shortcut + "\n";
+        for (State item : States) out += new SetLength().setLength(25, item.name) + "\t" + item.shortcut + "\n";
 
 
 
-        return "Výpis všech státu:\n" + out;
+        return "Výpis všech státu a jejich zkratek:\n" + out;
     }
 
 //    public void setAltShortCut(State state) {
