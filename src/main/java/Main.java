@@ -104,8 +104,11 @@ import org.json.JSONObject;
                 //List result = new ArrayList<StateList>(listOfState);
 
                 //CollectionUtils.filter(result, o -> ((State) o).getName() == country);
-                if (listOfState.isDuplicate(state)) {
-                    listOfState.setAltShortCut(state);
+
+                State findState = listOfState.getItemWithName(state);
+                if (findState != null) {
+                    findState.addShorCut(state.getFirstShortCut());
+                    //listOfState.setAltShortCut(state);
                     System.out.println("Duplicita " + state.getName());
                 } else {
                     listOfState.add(state);

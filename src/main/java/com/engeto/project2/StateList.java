@@ -11,6 +11,8 @@ public class StateList {
 
     public void add(State state) {States.add(state);}
 
+
+
     public String toString(int start, int end, List<State> StatesSorted) {
         String out = "";
 
@@ -52,6 +54,13 @@ public class StateList {
         }
 
 
+    }
+
+    public State getItemWithName(State state) {
+        for (State item : States) {
+            if (state.getName().equals(item.getName())) return item;
+        }
+        return null;
     }
 
     public boolean isDuplicate(State state) {
