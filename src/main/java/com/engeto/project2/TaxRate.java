@@ -33,7 +33,6 @@ public class TaxRate {
 
     public String getDescription() {
         String out = this.czName;
-        //for(int i = out.length(); i < 24; i++) out += " ";
         out = new SetLength().setLength(24, out);
 
         if (this.isHas) {
