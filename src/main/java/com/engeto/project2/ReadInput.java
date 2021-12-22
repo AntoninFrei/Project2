@@ -12,6 +12,7 @@ public class ReadInput {
         }
         return scanner;
     }
+
     public static String safeInput() {
         return getScanner().nextLine();
     }

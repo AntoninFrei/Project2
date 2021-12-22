@@ -1,28 +1,26 @@
 package com.engeto.project2;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.math.BigDecimal;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class StateList {
-    private List<State> States = new ArrayList<>();
+    private final List<State> States = new ArrayList<>();
 
-    public void add(State state) {States.add(state);}
-
+    public void add(State state) {
+        States.add(state);
+    }
 
 
     public String toString(int start, int end, List<State> StatesSorted) {
         String out = "";
 
-        for(int i = start; i<end; i++) {
-            out += "Pořadí:\t\t\t\t\t\t" + (i+1) + "\n";
+        for (int i = start; i < end; i++) {
+            out += "Pořadí:\t\t\t\t\t\t" + (i + 1) + "\n";
             out += StatesSorted.get(i).getDescrtion();
         }
         return out;
     }
-
 
 
     public String getMin() {
@@ -39,7 +37,6 @@ public class StateList {
     public String getAllNames() {
         String out = "";
         for (State item : States) out += new SetLength().setLength(25, item.name) + "\t" + item.shortcut + "\n";
-
 
 
         return "Výpis všech státu a jejich zkratek:\n" + out;
@@ -73,12 +70,9 @@ public class StateList {
         Collections.sort(StatesSorted, new StatesVATComparator());
 
 
-
-
         return StatesSorted;
 
     }
-
 
 
 }

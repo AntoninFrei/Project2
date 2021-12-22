@@ -23,8 +23,7 @@ public class TaxRate {
             this.rate = readedData.getJSONObject(country).getBigDecimal(key);
             this.isHas = true;
 
-        }
-        catch (org.json.JSONException e) {
+        } catch (org.json.JSONException e) {
             this.rate = new BigDecimal(0);
             this.isHas = false;
         }
@@ -43,10 +42,6 @@ public class TaxRate {
             return out + "Ne";
         }
     }
-
-
-
-
 
 
 }
