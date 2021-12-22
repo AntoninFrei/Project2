@@ -10,8 +10,12 @@ import com.engeto.project2.TaxRate;
 
 //import com.fasterxml.jackson.annotation.JsonMappingException;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+import java.util.function.Predicate;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.json.JSONObject;
 
 
@@ -95,7 +99,20 @@ import org.json.JSONObject;
                 State state = new State(country,countryShort, standardRate, reducedRate, reducedRateAlt,
                         superReducedRate, parkingRate);
 
-                listOfState.add(state);
+                //Predicate<State> isInArray = States -> state.getName() == country;
+
+                //List result = new ArrayList<StateList>(listOfState);
+
+                //CollectionUtils.filter(result, o -> ((State) o).getName() == country);
+                if (listOfState.isDuplicate(state)) {
+                    listOfState.setAltShortCut(state);
+                    System.out.println("Duplicita " + state.getName());
+                } else {
+                    listOfState.add(state);
+                }
+
+
+
 
                 //System.out.println(state.getDescrtion());
 
@@ -103,12 +120,14 @@ import org.json.JSONObject;
             }
 
 
-            System.out.println("Všechny načtené státy:\n" + listOfState.toString(0, listOfState.length()));
+            //System.out.println("Všechny načtené státy:\n" + listOfState.toString(0, listOfState.length()));
 
             System.out.println(listOfState.getMin());
-            System.out.println(listOfState.getSorted());
+            System.out.println(listOfState.getMax());
+            System.out.println(listOfState.getAllNames());
+            //System.out.println(listOfState.getSorted());
 
-            System.out.println("Všechny načtené státy:\n" + listOfState.toString(0, listOfState.length()));
+            //System.out.println("Všechny načtené státy:\n" + listOfState.toString(0, listOfState.length()));
 
 
 

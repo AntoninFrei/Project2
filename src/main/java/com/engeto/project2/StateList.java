@@ -11,42 +11,72 @@ public class StateList {
 
     public void add(State state) {States.add(state);}
 
-    public String toString(int start, int end) {
+    public String toString(int start, int end, List<State> StatesSorted) {
         String out = "";
+
         for(int i = start; i<end; i++) {
             out += "Pořadí: " + (i+1) + "\n";
-            out += States.get(i).getDescrtion();
+            out += StatesSorted.get(i).getDescrtion();
         }
         return out;
     }
 
-    public int length() {
-        return States.toArray().length;
-    }
+//    public int length() {
+//        return States.toArray().length;
+//    }
 
     public String getMin() {
-        List<State> StatesOver = new ArrayList<>();
-        Collections.sort(StatesOver, new StatesVATComparator());
-
-        return "Státy z nejnižší základní sazbou:\n:" + toString(0, 3);
+        List<State> StatesSorted = getSorted();
+        return "Státy z nejnižší základní sazbou:\n" + toString(0, 3, StatesSorted);
     }
 
-    public String getSorted() {
-        List<State> StatesOver = (new ArrayList<State>(States));
-        //Collections.copy(StatesOver, States);
-//        Collections.sort(StatesOver, new StatesVATComparator());
-//
+    public String getMax() {
+        List<State> StatesSorted = getSorted();
+        return "Státy z nejvyšší základní sazbou:\n" + toString(StatesSorted.toArray().length - 3,
+                StatesSorted.toArray().length, StatesSorted);
+    }
+
+    public String getAllNames() {
         String out = "";
+        for (State item : States) out += item.name + "\t" + item.shortcut + "\n";
+
+
+
+        return "Výpis všech státu:\n" + out;
+    }
+
+    public void setAltShortCut(State state) {
+        for (State item : States) {
+            if (state.getName().equals(item.getName())) item.addShorCut(state.getFirstShortCut());
+
+        }
+
+
+    }
+
+    public boolean isDuplicate(State state) {
+        for (State item : States) {
+            if (state.getName().equals(item.getName())) return true;
+        }
+        return false;
+    }
+
+    public List<State> getSorted() {
+        List<State> StatesSorted = (new ArrayList<State>(States));
+        //Collections.copy(StatesSorted, States);
+//        Collections.sort(StatesSorted, new StatesVATComparator());
+//
+//        String out = "";
 //        for(int i = 0; i<10; i++) {
 //            out += "Pořadí: " + (i+1) + "\n";
-//            out += StatesOver.get(i).getDescrtion();
-        Collections.sort(StatesOver, new StatesVATComparator());
+//            out += StatesSorted.get(i).getDescrtion();
+        Collections.sort(StatesSorted, new StatesVATComparator());
 
-        for (State item : StatesOver) out += item.getDescrtion() + "\n";
-        out += "========================================================";
+//        for (State item : StatesSorted) out += item.getDescrtion() + "\n";
+//        out += "========================================================";
 
 
-        return "Seřazeno podle základní sazby:\n:" + out;
+        return StatesSorted;
 
     }
 

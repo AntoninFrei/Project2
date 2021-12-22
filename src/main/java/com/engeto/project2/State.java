@@ -1,12 +1,13 @@
 package com.engeto.project2;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 public class State {
 
-
-        String shortcut;
         String name;
+        List<String> shortcut = new ArrayList<>();
         TaxRate standardRate;
         TaxRate reducedRate;
         TaxRate reducedRateAlt;
@@ -16,7 +17,7 @@ public class State {
         public State(String name, String shortcut, TaxRate standardRate, TaxRate reducedRate, TaxRate reducedRateAlt,
                      TaxRate superReducedRate, TaxRate parkingRate) {
                 this.name = name;
-                this.shortcut = shortcut;
+                this.shortcut.add(shortcut);
                 this.standardRate = standardRate;
                 this.reducedRate = reducedRate;
                 this.reducedRateAlt = reducedRateAlt;
@@ -39,5 +40,17 @@ public class State {
 
         public TaxRate getStandardRate() {
                 return standardRate;
+        }
+
+        public String getName() {
+                return name;
+        }
+
+        public String getFirstShortCut() {
+                return  this.shortcut.get(0);
+        }
+
+        public void addShorCut(String shortCut) {
+                this.shortcut.add(shortCut);
         }
 }
