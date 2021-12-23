@@ -36,8 +36,10 @@ public class StateList {
 
     public String getAllNames() {
         String out = "";
-        for (State item : States) out += new SetLength().setLength(25, item.name) + "\t" + item.shortcut + "\n";
-
+        for (State item : getSortedAccName()) {
+            out += new SetLength().setLength(25, item.name) + "\t" +
+                    String.join(", ", item.shortcut) + "\n";
+        }
 
         return "Výpis všech státu a jejich zkratek:\n" + out;
     }
@@ -62,6 +64,16 @@ public class StateList {
         List<State> StatesSorted = (new ArrayList<State>(States));
 
         Collections.sort(StatesSorted, new StatesVATComparator());
+
+
+        return StatesSorted;
+
+    }
+
+    public List<State> getSortedAccName() {
+        List<State> StatesSorted = (new ArrayList<State>(States));
+
+        Collections.sort(StatesSorted, new StatesNameComparator());
 
 
         return StatesSorted;
