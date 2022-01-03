@@ -24,7 +24,7 @@ public class Main {
         HttpClient httpClient = HttpClient.newBuilder().build();
         HttpRequest httpRequest = HttpRequest.newBuilder().uri(URI.create(address)).GET().build();
         HttpResponse httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-        String json = (String) httpResponse.body();
+        String json = httpResponse.body().toString();
 
         JSONObject obj = new JSONObject(json);
 
