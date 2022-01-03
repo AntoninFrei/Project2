@@ -4,8 +4,6 @@ import com.engeto.project2.StateList;
 import com.engeto.project2.TaxRate;
 import org.json.JSONObject;
 
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.core.MediaType;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -21,25 +19,17 @@ import static com.engeto.project2.ReadInput.safeInput;
 
 public class Main {
     public static void main(String[] args) throws IOException, InterruptedException {
-        //String json = ClientBuilder.newClient().target("https://euvatrates.com/rates.json").request().accept(MediaType.APPLICATION_JSON).get(String.class);
-        //System.out.println("test");
-        //System.out.println(json);
 
         String address = "https://euvatrates.com/rates.json";
         HttpClient httpClient = HttpClient.newBuilder().build();
         HttpRequest httpRequest = HttpRequest.newBuilder().uri(URI.create(address)).GET().build();
         HttpResponse httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-        //System.out.println(httpResponse.body());
-        //System.out.println("--------------------------------------------");
-        //System.out.println(json);
         String json = (String) httpResponse.body();
 
         JSONObject obj = new JSONObject(json);
-        //JSONObject obj = new JSONObject(httpResponse.body());
 
         JSONObject readedData = obj.getJSONObject("rates");
         Iterator<String> keys = readedData.keys();
-
 
         StateList listOfState = new StateList();
 
